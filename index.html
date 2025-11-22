@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa - Gran Premio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 Gran Rifa 🎉</h1>
+            <p class="subtitle">¡Participa y gana este increíble premio!</p>
+        </header>
+
+        <!-- Sección del Premio -->
+        <section class="prize-section">
+            <h2>Premio en Juego</h2>
+            <div class="prize-card">
+                <img src="assets/prize-image.jpg" alt="Premio de la rifa" class="prize-image">
+                <div class="prize-info">
+                    <h3>iPhone 15 Pro Max</h3>
+                    <p>Nuevo iPhone 15 Pro Max 256GB - Color Titanio Natural</p>
+                    <p class="price">Valor: $1,200</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Métodos de Pago -->
+        <section class="payment-section">
+            <h2>Métodos de Pago</h2>
+            <div class="payment-buttons">
+                <button class="payment-btn" data-method="transferencia">
+                    💳 Transferencia Bancaria
+                </button>
+                <button class="payment-btn" data-method="paypal">
+                    📱 PayPal
+                </button>
+                <button class="payment-btn" data-method="binance">
+                    ₿ Binance
+                </button>
+                <button class="payment-btn" data-method="yappy">
+                    📲 Yappy
+                </button>
+            </div>
+
+            <!-- Datos de Pago (se muestra al hacer click) -->
+            <div id="payment-details" class="payment-details hidden">
+                <h3 id="payment-title">Datos para Transferencia</h3>
+                <div id="payment-info" class="payment-info">
+                    <!-- Los datos se cargan dinámicamente -->
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard()">
+                    📋 Copiar Datos
+                </button>
+            </div>
+        </section>
+
+        <!-- Subida de Comprobantes -->
+        <section class="upload-section">
+            <h2>Subir Comprobante de Pago</h2>
+            <form id="upload-form" class="upload-form">
+                <div class="form-group">
+                    <label for="participant-name">👤 Nombre Completo:</label>
+                    <input type="text" id="participant-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="participant-email">📧 Email:</label>
+                    <input type="email" id="participant-email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="participant-phone">📞 Teléfono:</label>
+                    <input type="tel" id="participant-phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tickets-normal">🎫 Tickets Normales ($10 c/u):</label>
+                    <input type="number" id="tickets-normal" min="0" value="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tickets-premium">⭐ Tickets Premium ($15 c/u):</label>
+                    <input type="number" id="tickets-premium" min="0" value="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment-method">💰 Método de Pago:</label>
+                    <select id="payment-method" required>
+                        <option value="">Seleccionar método...</option>
+                        <option value="transferencia">Transferencia Bancaria</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="binance">Binance</option>
+                        <option value="yappy">Yappy</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="payment-proof">📎 Comprobante de Pago:</label>
+                    <input type="file" id="payment-proof" accept="image/*,.pdf" required>
+                    <small>Formatos aceptados: JPG, PNG, PDF (Máx. 5MB)</small>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    📤 Enviar Comprobante
+                </button>
+            </form>
+        </section>
+
+        <!-- Estado de Comprobantes -->
+        <section class="status-section">
+            <h2>Estado de tus Comprobantes</h2>
+            <div id="receipts-list" class="receipts-list">
+                <!-- Los comprobantes se cargan dinámicamente -->
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
