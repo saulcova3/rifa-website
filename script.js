@@ -29,16 +29,20 @@ Monto: $10.00`
 }
 };
 let receipts = JSON.parse(localStorage.getItem('raffleReceipts')) || [];
-document.addEventListener('DOMContentLoaded', function() {
+function initApp() {
+console.log('🔄 Inicializando aplicación...');
 initializePaymentButtons();
 initializeUploadForm();
 loadReceipts();
-});
+console.log('✅ Aplicación inicializada');
+}
 function initializePaymentButtons() {
 const paymentButtons = document.querySelectorAll('.payment-btn');
 const paymentDetails = document.getElementById('payment-details');
-const paymentTitle = document.getElementById('payment-title');
-const paymentInfo = document.getElementById('payment-info');
+if (!paymentButtons.length || !paymentDetails) {
+console.log('⚠️ Botones de pago no encontrados');
+return;
+}
 paymentButtons.forEach(button => {
 button.addEventListener('click', function() {
 const method = this.dataset.method;
@@ -61,6 +65,10 @@ return 'No disponible';
 }
 async function initializeUploadForm() {
 const form = document.getElementById('upload-form');
+if (!form) {
+console.log('❌ Formulario no encontrado');
+return;
+}
 form.addEventListener('submit', async function(e) {
 e.preventDefault();
 const file = document.getElementById('payment-proof').files[0];
@@ -134,6 +142,10 @@ submitBtn.disabled = false;
 }
 function loadReceipts() {
 const receiptsList = document.getElementById('receipts-list');
+if (!receiptsList) {
+console.log('⚠️ receipts-list no encontrado');
+return;
+}
 if (receipts.length === 0) {
 receiptsList.innerHTML = '<p style="text-align: center; color: #666;">No hay comprobantes enviados.</p>';
 return;
@@ -180,3 +192,4 @@ copyBtn.textContent = originalText;
 copyBtn.style.background = '';
 }, 2000);
 }
+initApp();
